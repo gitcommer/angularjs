@@ -1,0 +1,171 @@
+<!--
+date start: june 24, 2019
+
+ng-app 				- meaning the whole html page will controlled by angular
+directives			- is the angulay code you inserted in html element like ng-app, ng-model etc.
+output/display
+code
+input to form and display (live)
+array
+loop
+css on angular
+modules 			- same siya og html and external css file
+controllers 		- same siya og html and external css file
+filters / search / display order / search by currency
+include header or other file
+
+
+
+code
+****
+ng-init="numbers=[1,2,3,4]" 						- ng-initial meaning declare a variable
+<li ng-repeat="ninja  in ninjas">{{ninja}}</li>		- ng-repeat meaning i repeat of display or loop
+													- you can change ninja like x or y or etc. but not in and ninjas
+
+
+ng-app
+******
+<html lang="en" ng-app> 	- meaning the whole html page will controlled by angular
+<body ng-app>				- meaning the whole body will controlled by angular
+
+
+input to form and display (live)
+********************************
+<html lang="en" ng-app>
+<input type="text" name="" ng-model="favMeat" placeholder="enter your fav meat"> 	//when you enter data in the form the data will store in ng-model="favMeat"
+  	<p>You fab meat is: {{favMeat}}</p> 											//display data you input (live)
+
+
+output/display
+**************
+{{5 * 5}}
+{{foo + bar}}
+
+
+array
+*****
+sample1 	- <body ng-init="numbers=[1,2,3,4]">
+			  <p>{{numbers[0] + numbers[3]}}</p>  //3 is the 4th element in array
+			  output: 5
+
+sample1 	- <body ng-init="meats=['pork','ham','beef']">
+			  <p>You like {{meats[1]}}, and you also line {{meats[2]}}</p>
+			  output: You like ham, and you also line beef
+
+sample1 	- <body ng-init="ninjas=['yoshi','crystal','ryu','shaun']">
+			  <ul>
+		  		<li>{{ninjas[0]}}</li>
+		  		<li>{{ninjas[1]}}</li>
+		  		<li>{{ninjas[2]}}</li>
+		  		<li>{{ninjas[3]}}</li>
+		  	  </ul>
+
+
+css on angular
+**************
+html 	- <body ng-init="color='orange'">
+		  <p class="{{color}}">hello dude</p>  //si ng-init sa class niya gi display
+
+css 	- .orange{color: orange;}
+
+
+loop
+****
+sample1 	- <body ng-init="ninjas=['yoshi','crystal','ryu','shaun']">
+			  <li ng-repeat="ninja  in ninjas">{{ninja}}</li>
+
+
+modules
+*******
+index.html 		- <html lang="en" ng-app="myNinjaApp">
+				- <script src="app\app.js"></script>   //add this below <head>
+
+app.js 			- 	var myNinjaApp = angular.module('myNinjaApp', []);   //module('myNinjaApp') is the name of module not the variable
+
+					myNinjaApp.config(function(){
+
+					});
+
+					myNinjaApp.run(function(){   //this function here will run myNinjaApp.config(function(){
+
+					});
+
+					myNinjaApp.controller
+
+
+controllers
+***********
+index.html 		- 	<html lang="en" ng-app="myNinjaApp">
+				-	<head>
+						<script src="app\app.js"></script>
+				-	<div ng-controller="NinjaController">
+				      <ul>
+				        <p>{{message}}</p>
+				        <li ng-repeat="ninja in ninjas">{{ninja}}</li>
+				      </ul>
+				    </div>
+
+app.js 			- 	var myNinjaApp = angular.module('myNinjaApp', []);   //module('myNinjaApp') is the name of module not the variable
+
+					myNinjaApp.controller('NinjaController', function($scope){  //$scope me like <div class="scope">here...</div> 	- meaning iyang cover sulod ra ani na div
+						$scope.message = "hey y'all";
+						$scope.ninjas = ['yoshi', 'crystal', 'ryu', 'shaun'];
+					});
+
+
+filters / search / display order / search by currency
+*****************************************************
+index.html 		// sample1 --------------------
+				- 	<html lang="en" ng-app="myNinjaApp">
+				-	<head>
+						<script src="app\app.js"></script>
+				-	<div ng-controller="NinjaController">
+				      <ul>
+				        <li ng-repeat="ninja in ninjas | orderBy: 'name'">{{ninja}}</li>	//order by name
+						//<li ng-repeat="ninja in ninjas | orderBy: '-name'">{{ninja}}</li>	//reverse order by name
+				      </ul>
+				    </div>
+
+
+				// sample2 --------------------
+				- 	<html lang="en" ng-app="myNinjaApp">
+				-	<head>
+						<script src="app\app.js"></script>
+				-	<div ng-controller="NinjaController">
+					  <input type="text" ng-model="search" />
+				      <ul>
+				        <li ng-repeat="ninja in ninjas | orderBy: '-name' | filter: search">{{ninja.name}} - {{ninja.rate | currency}}</li>	//order by name
+				      </ul>
+				    </div>
+
+app.js 			- 	var myNinjaApp = angular.module('myNinjaApp', []);   //module('myNinjaApp') is the name of module not the variable
+
+					myNinjaApp.controller('NinjaController', function($scope){  //$scope me like <div class="scope">here...</div> 	- meaning iyang cover sulod ra ani na div
+
+						$scope.ninjas = [
+							{name: "Yoshi", belt: "Green", rate: '50'}, 	//this is called array of object
+							{name: "Crystal", belt: "Yellow", rate: '30'},
+							{name: "Ryu", belt: "orange", rate: '10'},
+							{name: "Shaun", belt: "black", rate: '1000'},
+						];
+					});
+
+
+include header or other file
+****************************
+index.php 	- 	<ng-include src="'header.html'"></ng-include>
+
+header.html - 	<div id="manu-bar">
+					<h1>Ninja Directory</h1>
+					<ul>
+						<li><a href="">Home</a></li>
+						<li><a href="">List Ninjas</a></li>
+					</ul>
+				</div>
+
+
+
+
+
+
+-->
