@@ -13,6 +13,8 @@ modules 			- same siya og html and external css file
 controllers 		- same siya og html and external css file
 filters / search / display order / search by currency
 include header or other file
+hide and show data 		- "ng-show or ng-hide" but not click hide and show
+when click display data in-order
 
 
 
@@ -162,6 +164,30 @@ header.html - 	<div id="manu-bar">
 						<li><a href="">List Ninjas</a></li>
 					</ul>
 				</div>
+
+
+hide and show data 		- "ng-show or ng-hide" but not click hide and show
+**************************************************************************
+index.html 		- <li ng-repeat="ninja in ninjas | orderBy: '-name' | filter: search" ng-show="ninja.available">  - or ng-show="ninja.available"
+		                                                                                                          - available is found in app.js like available: true or false
+		                                                                                                          - !ninja.available meaning if not nija availble
+
+
+app.js 			- 	var myNinjaApp = angular.module('myNinjaApp', []);   //module('myNinjaApp') is the name of module not the variable
+
+					myNinjaApp.controller('NinjaController', function($scope){  //$scope me like <div class="scope">here...</div> 	- meaning iyang cover sulod ra ani na div
+
+						$scope.ninjas = [
+							{name: "Yoshi", belt: "Green", rate: '50', available: true}, 	//this is called array of object
+							{name: "Crystal", belt: "Yellow", rate: '30', available: true},
+							{name: "Ryu", belt: "orange", rate: '10', available: false},
+							{name: "Shaun", belt: "black", rate: '1000', available: true},
+						];
+					});
+
+
+when click display data in-order
+********************************
 
 
 
