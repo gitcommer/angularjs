@@ -1,0 +1,56 @@
+
+<!-- tutorial: https://www.youtube.com/watch?v=e6YjzckfQpg&list=PL4cUxeGkcC9gsJS5QgFT2IvWIX78dV3_v&index=13 -->
+
+
+
+index.html
+**********
+<!DOCTYPE html>
+<html lang="en" ng-app="myNinjaApp">
+  <head>
+    <title>TheNetNinja Angular Playlist</title>
+    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="app/angular-1.7.8.js"></script>
+    <script src="app\app.js"></script>
+  </head>
+  <body>
+    <ng-include src="'header.html'"></ng-include>
+    <div class="content">
+    	<div ng-controller="NinjaController">
+        <button ng-click="order='name'">Order by Name</button>  <!-- 01 when click this button -->
+        <button ng-click="order='belt'">Order by Belt</button>  <!-------------->
+        <input type="text" ng-model="search" />
+        <ul>
+          <li ng-repeat="ninja in ninjas | orderBy: order | filter: search" ng-show="ninja.available">
+            <h3>{{ninja.name}} - {{ninja.rate | currency}}</h3>  <!-- 02 order this display -->
+            <div class="remove" ng-click="removeNinja(ninja)">x</div>  <!-- 01 when click x remove the data -->
+            <span class="belt" style="background: {{ninja.belt}}">{{ninja.belt}} belt</span>  <!-------------->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+app.js
+******
+<script type="text/javascript">
+	var myNinjaApp = angular.module('myNinjaApp', []);   //module('myNinjaApp') is the name of module not the variable
+
+	myNinjaApp.controller('NinjaController', function($scope){  //$scope me like <div class="scope">here...</div> 	- meaning iyang cover sulod ra ani na div
+
+		$scope.removeNinja = function(ninja){  //02 when click x remove the data
+			var removedNinja = $scope.ninjas.indexOf(ninja);
+			$scope.ninjas.splice(removedNinja, 1);  //1 meaning take 1 of the data then remove
+		}
+
+		$scope.ninjas = [
+			{name: "Yoshi", belt: "Green", rate: '50', available: true}, 	//this is called array of object
+			{name: "Crystal", belt: "Yellow", rate: '30', available: true},
+			{name: "Ryu", belt: "orange", rate: '10', available: false},
+			{name: "Shaun", belt: "black", rate: '1000', available: true},
+		];
+	});
+</script>
